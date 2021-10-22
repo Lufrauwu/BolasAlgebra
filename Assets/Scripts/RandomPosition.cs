@@ -20,8 +20,8 @@ public class RandomPosition : MonoBehaviour
         GameObject toSpawn;
         MeshCollider c = quad.GetComponent<MeshCollider>();
 
-        float screenX, screenY;
-        Vector2 pos;
+        float screenX, screenY, screenZ;
+        Vector3 pos;
 
         for (int i = 0; i < numberToSpawn; i++)
         {
@@ -30,7 +30,8 @@ public class RandomPosition : MonoBehaviour
 
             screenX = Random.Range(c.bounds.min.x, c.bounds.max.x);
             screenY = Random.Range(c.bounds.min.y, c.bounds.max.y);
-            pos = new Vector2(screenX, screenY);
+            screenZ = Random.Range(c.bounds.min.z, c.bounds.max.z);
+            pos = new Vector3(screenX, screenY, screenZ);
 
             Instantiate(toSpawn, pos, toSpawn.transform.rotation);
 
