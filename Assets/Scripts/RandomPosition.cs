@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RandomPosition : MonoBehaviour
 {
     public int numberToSpawn;
     public List<GameObject> spawnPool;
     public GameObject quad;
+    public Material[] texturas;
+    public Material[] texturas2;
 
     void Start()
     {
         spawnObjects();
+        var shuffled = texturas.OrderBy(x => System.Guid.NewGuid()).ToList();
+        for (int i = 0; i < 5; i++)
+        {
+            print(shuffled[i]);
+            texturas2[i] = shuffled[i];
+        }
+
     }
 
     public void spawnObjects()
@@ -33,7 +43,8 @@ public class RandomPosition : MonoBehaviour
             screenZ = Random.Range(c.bounds.min.z, c.bounds.max.z);
             pos = new Vector3(screenX, screenY, screenZ);
 
-            Instantiate(toSpawn, pos, toSpawn.transform.rotation);
+            GameObject planeta= Instantiate(toSpawn, pos, toSpawn.transform.rotation);
+            planeta.GetComponent<Renderer>().material = texturas2[i];
 
         }
     }
