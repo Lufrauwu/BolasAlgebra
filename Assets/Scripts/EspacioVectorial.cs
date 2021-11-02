@@ -15,7 +15,7 @@ public class EspacioVectorial : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         distancia = Vector3.Distance(player.transform.position, transform.position);
         if(distancia<2.2f)

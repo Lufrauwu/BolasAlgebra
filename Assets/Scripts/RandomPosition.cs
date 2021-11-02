@@ -45,7 +45,7 @@ public class RandomPosition : MonoBehaviour
 
             GameObject planeta= Instantiate(toSpawn, pos, toSpawn.transform.rotation);
             planeta.GetComponent<Renderer>().material = texturas2[i];
-            planeta.GetComponent<EspacioVectorial>().enabled = true;
+            planeta.GetComponent<EspacioVectorial>().enabled = true;  
         }
     }
     private void destroyObjects()
