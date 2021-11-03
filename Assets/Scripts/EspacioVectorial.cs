@@ -8,6 +8,7 @@ public class EspacioVectorial : MonoBehaviour
 
     public float distancia;
     public GameObject player;
+    GameObject[] ObstacleList = new GameObject[2];
 
     void Start()
     {
@@ -18,14 +19,91 @@ public class EspacioVectorial : MonoBehaviour
     void Update()
     {
         distancia = Vector3.Distance(player.transform.position, transform.position);
-        if(distancia<=2.2f)
+        if(distancia<=2.4f)
         {
-            player.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-            Debug.Log("A si xd");
+            ObstacleList = GameObject.FindGameObjectsWithTag("Obstacle");
+            //print(ObstacleList.Length);
+            foreach (GameObject p in ObstacleList)
+            {
+                float distancep = Vector3.Distance(p.transform.position, transform.position);
+                //print( "p "+ p.transform.position + "yo" +transform.position);
+                if (p.transform.position==transform.position)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = true;
+                }
+                if (distancia <= 1.0f)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = false;
+                }
+            }
         }
         else 
         {
             player.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            ObstacleList = GameObject.FindGameObjectsWithTag("Obstacle");
+            //print(ObstacleList.Length);
+            foreach (GameObject p in ObstacleList)
+            {
+                float distancep = Vector3.Distance(p.transform.position, transform.position);
+                //print( "p "+ p.transform.position + "yo" +transform.position);
+                if (p.transform.position==transform.position)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = false;
+
+                    //p.SetActive(true);
+                }     
+            }
         }
-    }
-}
+
+        if(distancia<=2.4f)
+        {
+            ObstacleList = GameObject.FindGameObjectsWithTag("Empty");
+            //print(ObstacleList.Length);
+            foreach (GameObject p in ObstacleList)
+            {
+                float distancep = Vector3.Distance(p.transform.position, transform.position);
+                //print( "p "+ p.transform.position + "yo" +transform.position);
+                if (p.transform.position==transform.position)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = true;
+                    print("toy vacio");
+                }
+            }
+        }
+
+        if(distancia<=2.4f)
+        {
+            ObstacleList = GameObject.FindGameObjectsWithTag("Trophy");
+            //print(ObstacleList.Length);
+            foreach (GameObject p in ObstacleList)
+            {
+                float distancep = Vector3.Distance(p.transform.position, transform.position);
+                //print( "p "+ p.transform.position + "yo" +transform.position);
+                if (p.transform.position==transform.position)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = true;
+                    print("Buena Cruz Azul");
+                }
+            }
+        }
+        else 
+        {
+            player.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            ObstacleList = GameObject.FindGameObjectsWithTag("Trophy");
+            //print(ObstacleList.Length);
+            foreach (GameObject p in ObstacleList)
+            {
+                float distancep = Vector3.Distance(p.transform.position, transform.position);
+                //print( "p "+ p.transform.position + "yo" +transform.position);
+                if (p.transform.position==transform.position)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = false;
+
+                    //p.SetActive(true);
+                }     
+            }
+        }
+    }  
+
+    
+} 

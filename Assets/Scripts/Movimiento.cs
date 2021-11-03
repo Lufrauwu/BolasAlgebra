@@ -7,10 +7,13 @@ public class Movimiento : MonoBehaviour
     private int speeed = 3;
 
     private float timer = 0;
+    public GameObject camera1;
+    public GameObject camera2;
     // Start is called before the first frame update
     void Start()
     {
-
+        camera1.SetActive(true);
+        camera2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +47,17 @@ public class Movimiento : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(0,1,0 *Time.deltaTime * 2);
+        }
+
+        if (Input.GetKey(KeyCode.V))
+        {
+            camera1.SetActive(false);
+            camera2.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            camera1.SetActive(true);
+            camera2.SetActive(false);
         }
 
 

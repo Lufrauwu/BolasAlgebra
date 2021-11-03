@@ -7,6 +7,8 @@ public class RandomPosition : MonoBehaviour
 {
     public int numberToSpawn;
     public List<GameObject> spawnPool;
+    public List<GameObject> obstacle;
+    public List<GameObject> obstacle2;
     public GameObject quad;
     public Material[] texturas;
     public Material[] texturas2;
@@ -15,10 +17,15 @@ public class RandomPosition : MonoBehaviour
     {
         spawnObjects();
         var shuffled = texturas.OrderBy(x => System.Guid.NewGuid()).ToList();
+        var shuffled2 = obstacle.OrderBy(x => System.Guid.NewGuid()).ToList();
         for (int i = 0; i < 5; i++)
         {
             print(shuffled[i]);
             texturas2[i] = shuffled[i];
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            obstacle2.Add(shuffled2[i]);
         }
     }
 
@@ -45,6 +52,9 @@ public class RandomPosition : MonoBehaviour
             GameObject planeta= Instantiate(toSpawn, pos, toSpawn.transform.rotation);
             planeta.GetComponent<Renderer>().material = texturas2[i];
             planeta.GetComponent<EspacioVectorial>().enabled = true;
+
+            Instantiate(obstacle2[i], pos, transform.rotation);
+            obstacle2[i].GetComponent<MeshRenderer>().enabled = false;
         }
     }
     private void destroyObjects()
