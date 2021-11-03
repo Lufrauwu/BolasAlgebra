@@ -30,6 +30,7 @@ public class EspacioVectorial : MonoBehaviour
                 if (p.transform.position==transform.position)
                 {
                     p.GetComponent<MeshRenderer>().enabled = true;
+                    print("wakey, wakey, kaboom");
                 }
                 if (distancia <= 1.0f)
                 {
@@ -83,6 +84,10 @@ public class EspacioVectorial : MonoBehaviour
                 {
                     p.GetComponent<MeshRenderer>().enabled = true;
                     print("Buena Cruz Azul");
+                }
+                if (distancia <= 1.0f)
+                {
+                    p.GetComponent<MeshRenderer>().enabled = false;
                 }
             }
         }
